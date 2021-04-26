@@ -63,7 +63,7 @@ void addEmpl(Employee *empl) {
     node->next = NULL;
     node->prev = NULL;
 
-    if (head == NULL && last == NULL) {
+    if (head == NULL) {
         head = node;
     } else {
         node->prev = last;
@@ -92,7 +92,7 @@ void deleteEmpl(int id) {
             Node *nextNode = node->next;
             
             if (prevNode == NULL) {
-                notify("PRINT", COLOR_SUCCESS);
+                notify("PRINT prev", COLOR_SUCCESS);
                 head = head->next;
                 if (head != NULL)
                     head->prev = NULL;
@@ -100,6 +100,7 @@ void deleteEmpl(int id) {
             }
 
             if (nextNode == NULL) {
+                notify("PRINT next", COLOR_SUCCESS);
                 last = last->prev;
                 if (last != NULL)
                     last->next = NULL;
@@ -118,7 +119,7 @@ void deleteEmpl(int id) {
     }
 
     if (found == -1)
-        notify( "NOT FOUND EMPLOYEE", COLOR_SUCCESS );    
+        notify( "NOT FOUND EMPLOYEE", COLOR_ERROR );    
     else 
         notify( "DELETE SUCCESSFULLY", COLOR_SUCCESS );
 }
@@ -146,7 +147,7 @@ void searchByIdOrName(int id, char name[]) {
     }
 
     if (found == -1) {
-        notify( "this employee is not exist!", COLOR_ERROR);
+        notify( "NOT FOUND EMPLOYEE", COLOR_ERROR);
         return;
     }
 }
